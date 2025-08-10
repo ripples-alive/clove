@@ -28,7 +28,7 @@ class ClaudeWebRequest(BaseModel):
     rendering_mode: str = "messages"
     prompt: str = ""
     timezone: str
-    tools: List[Tool] = Field(default_factory=list)
+    tools: List[dict] = Field(default_factory=list)
 
 
 class UploadResponse(BaseModel):

@@ -117,7 +117,13 @@ class ClaudeWebProcessor(BaseProcessor):
                 rendering_mode="messages",
                 prompt=settings.custom_prompt or "",
                 timezone="UTC",
-                tools=request.tools or [],
+                tools=[
+                    *[tool.model_dump(exclude_none=True) for tool in request.tools],
+                    {
+                        "type": "web_search_v0",
+                        "name": "web_search",
+                    },
+                ],
             )
 
             context.claude_web_request = web_request
