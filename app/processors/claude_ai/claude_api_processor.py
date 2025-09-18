@@ -136,7 +136,7 @@ class ClaudeAPIProcessor(BaseProcessor):
                         raise InvalidModelNameError(context.messages_api_request.model)
 
                     if (
-                        response.status_code == 401
+                        response.status_code in [401, 403]
                         and error_data.get("error", {}).get("message")
                         == "OAuth authentication is currently not allowed for this organization."
                     ):
